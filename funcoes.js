@@ -57,11 +57,32 @@ module.exports = {
 
 
 
+    }, 
+    vacinar: function(pos,nomedaVacina){
+
+        //verificar se existe um cachorro na posição passada.
+if(pos >= cachorros.length || pos < 0){
+    console.log("Cachorro inexistente");
+    return;
+}
+        // Criar um objeto literal com as informações da vacina. 
+let novaVacina = {
+    nome:nomedaVacina,
+    data:(new Date()).toISOString().substr(0,10)
+
+}
+        // Adicionar esse Objeto literal ao array de vacinas. 
+    cachorros[pos].vacinas.push(novaVacina);
+    
+    // Salvar o array de cachorros no arquivo 
+    fs.writeFileSync('./database/cachorros.json', JSON.stringify(cachorros,null,4));
+
     }
 
 
 
 }
+
 
 
 
